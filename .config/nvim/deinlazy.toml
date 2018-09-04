@@ -1,0 +1,124 @@
+
+#[[plugins]]
+#repo = 'Shougo/deoplete.nvim'
+#depends = 'context_filetype.vim'
+#if = "has('nvim')"
+#hook_source = '''
+#  source ~/.config/nvim/plugins/deoplete.rc.vim
+#'''
+
+# neocomplete
+#[[plugins]]
+#repo = 'Shougo/neocomplete.vim'
+#hook_source = '''
+#  source ~/.config/nvim/plugins/neocomplete.rc.vim
+#'''
+
+[[plguins]]
+repo = 'Shougo/neomru.vim'
+
+# cssのカラーを視覚化
+#[[plugins]]
+#repo = 'gko/vim-coloresque'
+
+
+
+#コメントアウト
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+  nnoremap <Leader>c <Plug>(caw:I:toggle)
+  vnoremap <Leader>c <Plug>(caw:I:toggle)
+'''
+
+# Latexのプラグイン
+[[plugins]]
+repo = 'lervag/vimtex'
+
+# vim-quickrun vimtexを動かすためのもの
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_source = '''
+  source ~/.config/nvim/plugins/vim-quickrun.rc.vim
+'''
+
+[[plugins]]
+repo = 'kloppster/Wordpress-Vim-Syntax'
+on_ft = ['php']
+#############################################################
+### Markdown ################################################
+# http://qiita.com/enushi/items/46b5a43b8eb30b20fcd8
+#############################################################
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['markdown','mkd']
+
+# quote内のプログラムをシンタックスハイライトする
+[[plugins]]
+repo = 'joker1007/vim-markdown-quote-syntax'
+on_ft = ['md','markdown','mkd']
+
+
+# HTMLのとじタグ補完
+[[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+on_ft = ['md','html']
+
+# HTML5 omnicomplete and syntax
+[[plugins]]
+repo = 'othree/html5.vim'
+on_ft = ['md','html']
+
+# emmet
+[[plugins]]
+repo = 'mattn/emmet-vim'
+on_ft = ['css']
+
+# jsonのシンタックス
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft = ['json']
+
+
+# node.js補完
+[[plugins]]
+repo = 'myhere/vim-nodejs-complete'
+# jsonでダブルクオーテーションが出ない問題があったので導入
+[[plugins]]
+repo = 'elzr/vim-json'
+on_ft =['json','js']
+hook_source = '''
+  let g:vim_json_syntax_conceal = 0
+'''
+# CSSカラー
+[[plugins]]
+repo = 'ap/vim-css-color'
+on_ft = ['sass','css','scss','pcss']
+
+# css3のシンタックス
+# [[plugins]]
+# repo = 'hail2u/vim-css3-syntax'
+# on_ft = ['sass','css','scss','pcss']
+
+# [[plugins]]
+# repo = 'stephenway/postcss.vim'
+# on_ft = ['pcss']
+
+# 編集中のMarkdownファイルのプレビューを作成する
+#[[plugins]]
+#repo = 'kannokanno/previm'
+#on_ft = ['markdown','mkd']
+
+# プレビューをブラウザで開いてくれる
+#[[plugins]]
+#repo = 'tyru/open-browser.vim'
+#on_ft = ['markdown','mkd']
+
+################################
+#  Templete Engine
+################################
+
+[[plugins]]
+repo = 'digitaltoad/vim-pug'
+on_ft = ['jade','pug']
+

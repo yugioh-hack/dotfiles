@@ -1,0 +1,125 @@
+# 起動時に読み込まれるプラグインを書き込む
+# 遅延しても良いものはdein_lazyに書いてある
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+# 複数の言語でハイライト等を自動判別して切り替えられる
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+# vim-preciousに必須
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+#--------------------
+# カラースキム一覧
+#--------------------
+[[plugins]]
+ repo = 'joshdick/onedark.vim'
+[[plugins]]
+ repo = 'cocopon/iceberg.vim'
+[[plugins]]
+repo = 'rhysd/vim-color-spring-night'
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+# コマンドラインをかっこよく
+[[plugins]]
+ repo = 'itchyny/lightline.vim'
+
+# ファイラー
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+
+# 不要な空白を表示する
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+
+# コピペする際に自動インデントをしないようにする
+[[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+
+# HTMLのとじタグ補完
+[[plugins]]
+repo = 'soramugi/auto-ctags.vim'
+
+# emmet
+[[plugins]]
+repo = 'mattn/emmet-vim'
+
+# markdown関連
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+repo = 'thinca/vim-quickrun'
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+# neocomplete インサートに入ったら読み込む
+# [[plugins]]
+# repo = 'Shougo/neocomplete.vim'
+# on_i = 1
+
+# スニペットの補完機能
+# neocomplete.vimが読み込まれたら一緒に読み込む
+# [[plugins]]
+# repo =  "Shougo/neosnippet"
+# on_source = ['Shougo/neocomplete.vim']
+
+# [[plugins]]
+# repo = 'Shougo/neosnippet-snippets'
+# on_source = ['Shougo/neocomplete.vim']
+
+# コメントアウトを簡単に
+[[plugins]]
+repo =  'tyru/caw.vim'
+
+# 文字数カウント
+[[plugins]]
+repo = 'fuenor/vim-wordcount'
+
+# gitgutter
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+# ウィンドウリサイズ
+[[plugins]]
+repo = 'simeji/winresizer'
+# スムーススクロール
+#[[plugins]]
+#repo = 'vim-scripts/Smooth-Scroll'
+
+# 対応するタグをハイライト
+[[plugins]]
+repo = 'gregsexton/MatchTag'
+
+# HTMLのとじタグに%で飛ぶ
+[[plugins]]
+repo = 'vimtaku/hl_matchit.vim'
+
+# 賢いIndentGuide
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+
+# css3のシンタックス
+# [[plugins]]
+# repo = 'hail2u/vim-css3-syntax'
+# シンプルなファイラー
+#[[plugins]]
+#repo = 'cocopon/vaffle.vim'
+
+# CSSカラー
+[[plugins]]
+repo = 'ap/vim-css-color'
+on_ft = ['sass','css','scss','pcss']
+
+[[plugins]]
+repo = 'alexlafroscia/postcss-syntax.vim'
+on_ft = ['pcss']

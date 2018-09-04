@@ -1,0 +1,120 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+hook_add = '''
+  source ~/.config/nvim/plugins/dein.rc.vim
+'''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+#[[plugins]] # カーソル位置のコンテキストに合わせてftを切り替える
+#repo = 'osyo-manga/vim-precious'
+#depends = ['context_filetype.vim']
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+build = 'make'
+
+# カラー
+# [[plugins]]
+# repo = 'cocopon/iceberg.vim'
+# hook_add = '''
+#   au MyAutoCmd VimEnter * nested colorscheme iceberg
+#   source ~/.config/nvim/plugins/iceberg.rc.vim
+# '''
+
+# [[plugins]]
+# repo = 'https://github.com/jdkanani/vim-material-theme'
+
+[[plugins]]
+repo = 'https://github.com/jacoborus/tender.vim'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+  \ 'colorscheme': 'wombat'
+  \}
+'''
+
+#ウィンドウサイズのりサイズ
+[[plugins]]
+repo = 'simeji/winresizer'
+
+# 不要な空白を表示する
+#[[plugins]]
+#repo = 'bronson/vim-trailing-whitespace'
+
+# コピペする際に自動インデントを無効化
+[[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+nnoremap <silent> fb :<C-u>Unite buffer<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/vimfiler.vim'
+depends = 'unite.vim'
+hook_add = '''
+source ~/.config/nvim/plugins/vimfiler.rc.vim
+'''
+
+#[[plugins]]
+#repo = 'Shougo/neosnippet'
+
+#[[plugins]]
+#repo = 'Shougo/neosnippet-snippets'
+
+#便利なターミナル
+[[plugins]]
+repo = 'kassio/neoterm'
+if = "has('nvim')"
+hook_add = '''
+  source ~/.config/nvim/plugins/neoterm.rc.vim
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+  let g:indentLine_color_term = 237
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'kana/vim-operator-replace'
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'kana/vim-textobj-user'
+
+[[plugins]]
+repo = 'rhysd/vim-operator-surround'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+#[[plugins]]
+#repo = 'lilydjwg/colorizer'
+
+# [[plugins]]
+# repo = 'alexlafroscia/postcss-syntax.vim'
+# on_ft = ['pcss']
+
