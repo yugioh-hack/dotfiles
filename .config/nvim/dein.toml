@@ -33,14 +33,167 @@ repo = 'https://github.com/jacoborus/tender.vim'
 repo = 'cespare/vim-toml'
 on_ft = 'toml'
 
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
+  let g:gitgutter_sign_added = '✚'
+  let g:gitgutter_sign_modified = '➜'
+  let g:gitgutter_sign_removed = '✘'
+
   let g:lightline = {
-  \ 'colorscheme': 'wombat'
-  \}
+          \ 'colorscheme': 'wombat',
+          \ 'mode_map': {'c': 'NORMAL'},
+          \ 'active': {
+          \   'right': [ [ 'syntastic', 'lineinfo' ],
+          \              [ 'percent' ], [ 'winform' ],
+          \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+          \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'gitgutter', 'filename' ] ]
+          \ },
+          \ 'component_function': {
+          \   'linetotal': 'LightLineTotal',
+          \   'modified': 'LightLineModified',
+          \   'readonly': 'LightLineReadonly',
+          \   'fugitive': 'LightLineFugitive',
+          \   'filename': 'LightLineFilename',
+          \   'filepath': 'LightLineFilepath',
+          \   'fileformat': 'LightLineFileformat',
+          \   'filetype': 'LightLineFiletype',
+          \   'fileencoding': 'LightLineFileencoding',
+          \   'gitgutter': 'MyGitGutter',
+          \   'mode': 'LightLineMode',
+          \   'winform': 'LightLineWinform'
+          \ },
+          \ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+          \ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+          \ 'component_expand': {
+          \   'syntastic': 'SyntasticStatuslineFlag',
+          \ },
+          \ 'component_type': {
+          \   'syntastic': 'error',
+          \ }
+          \ }
+
+  function! LightLineWinform()
+    return winwidth(0) > 50 ? 'w' . winwidth(0) . ':' . 'h' . winheight(0) : ''
+  endfunction
+
+  function! MyGitGutter()
+    if ! exists('*GitGutterGetHunkSummary')
+          \ || ! get(g:, 'gitgutter_enabled', 0)
+          \ || winwidth('.') <= 90
+      return ''
+    endif
+    let symbols = [
+          \ g:gitgutter_sign_added . ' ',
+          \ g:gitgutter_sign_modified . ' ',
+          \ g:gitgutter_sign_removed . ' '
+          \ ]
+    let hunks = GitGutterGetHunkSummary()
+    let ret = []
+    for i in [0, 1, 2]
+      if hunks[i] > 0
+        call add(ret, symbols[i] . hunks[i])
+      endif
+    endfor
+    return join(ret, ' ')
+  endfunction
+
+  function! LightLineModified()
+    return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+  endfunction
+
+  function! LightLineReadonly()
+    return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? "⭤" : ''
+  endfunction
+
+  function! LightLineFilename()
+    return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+          \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+          \  &ft == 'unite' ? unite#get_status_string() :
+          \  &ft == 'vimshell' ? vimshell#get_status_string() :
+          \ '' != expand('%') && winwidth(0) <=120 ? expand('%:t') : winwidth(0) >120 ? expand('%:p') : '[No Name]') .
+          \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+  endfunction
+
+  function! LightLineFilepath()
+    return winwidth(0) <=120 ? expand('%:h') : ''
+  endfunction
+
+  function! LightLineFugitive()
+    try
+      if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head') && winwidth(0) > 55
+        let _ = fugitive#head()
+        return strlen(_) ? '⭠ '._ : ''
+      endif
+    catch
+    endtry
+    return ''
+  endfunction
+
+  function! LightLineFileformat()
+    return winwidth(0) > 80 ? &fileformat : ''
+  endfunction
+
+  function! LightLineFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+  endfunction
+
+  function! LightLineFileencoding()
+    return winwidth(0) > 60 ? (strlen(&fenc) ? &fenc : &enc) : ''
+  endfunction
+
+  function! LightLineMode()
+    return winwidth(0) > 30 ? lightline#mode() : ''
+  endfunction
+
+  function! s:syntastic()
+    SyntasticCheck
+    call lightline#update()
+  endfunction
 '''
+
+[[plugins]]
+repo = 'maximbaz/lightline-ale'
+depends = ['lightline.vim', 'ale']
+hook_add = '''
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+    let b:ale_linters = {
+    \   'javascript': ['eslint', 'eslint-plugin-vue'],
+    \   'python': ['pyflakes', 'pep8'],
+    \   'ruby': ['rubocop'],
+    \   'tex': ['textlint'],
+    \   'markdown': ['textlint'],
+    \   'css': ['stylelint'],
+    \}
+    let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
+    let g:ale_set_loclist = 0
+    let g:ale_set_quickfix = 1
+    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+'''
+[[plugins]]
+repo = 'delphinus/lightline-delphinus'
 
 #ウィンドウサイズのりサイズ
 [[plugins]]
@@ -105,11 +258,7 @@ repo = 'kana/vim-textobj-user'
 [[plugins]]
 repo = 'rhysd/vim-operator-surround'
 
-[[plugins]]
-repo = 'airblade/vim-gitgutter'
 
-[[plugins]]
-repo = 'tpope/vim-fugitive'
 
 #[[plugins]]
 #repo = 'lilydjwg/colorizer'
