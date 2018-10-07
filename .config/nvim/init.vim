@@ -38,7 +38,7 @@ if has('vim_starting') && dein#check_install()
 endif
 
 filetype plugin indent on
-let g:python3_host_prog = system('which python3')
+let g:python3_host_prog = $PYENV_ROOT.'/versions/neovim-3/bin/python'
 
 syntax enable
 

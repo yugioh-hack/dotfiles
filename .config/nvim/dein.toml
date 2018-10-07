@@ -223,8 +223,8 @@ source ~/.config/nvim/plugins/vimfiler.rc.vim
 #[[plugins]]
 #repo = 'Shougo/neosnippet'
 
-#[[plugins]]
-#repo = 'Shougo/neosnippet-snippets'
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
 
 #便利なターミナル
 [[plugins]]
