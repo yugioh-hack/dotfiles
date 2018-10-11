@@ -65,7 +65,7 @@ else
 endif
 
 " syntax
-set synmaxcol=200 "1行200文字までsyntaxを有効にしない
+set synmaxcol=600 "1行600文字までsyntaxを有効にしない
 au BufRead,BufNewFile *.scss set filetype=sass " .sassに対応させる
 au BufRead,BufNewFile,BufReadPre *.jade set filetype=pug " pugをjadeと互換性を保って利用する
 au BufEnter *.php :set syn=wordpress
@@ -79,6 +79,8 @@ augroup fileTypeIndent
     autocmd BufNewFile,BufRead *.py setlocal tabstop=4 softtabstop=4 shiftwidth=4
     autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+autocmd FileType jsp,asp,php,xml,perl syntax sync minlines=100 maxlines=200
 
 " jsonのダブルクオーテーションを常に表示する
 let g:vim_json_syntax_conceal = 0
