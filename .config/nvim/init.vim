@@ -49,4 +49,5 @@ if (has("termguicolors"))
  set termguicolors
 endif
 
-colorscheme tender
+colorscheme iceberg
+"colorscheme tender

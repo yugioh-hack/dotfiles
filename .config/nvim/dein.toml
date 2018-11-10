@@ -16,12 +16,12 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 # カラー
-# [[plugins]]
-# repo = 'cocopon/iceberg.vim'
-# hook_add = '''
-#   au MyAutoCmd VimEnter * nested colorscheme iceberg
-#   source ~/.config/nvim/plugins/iceberg.rc.vim
-# '''
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+hook_add = '''
+  au MyAutoCmd VimEnter * nested colorscheme iceberg
+  source ~/.config/nvim/plugins/iceberg.rc.vim
+'''
 
 # [[plugins]]
 # repo = 'https://github.com/jdkanani/vim-material-theme'
@@ -179,18 +179,7 @@ let g:lightline.component_type = {
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
-    let b:ale_linters = {
-    \   'javascript': ['eslint', 'eslint-plugin-vue'],
-    \   'python': ['pyflakes', 'pep8'],
-    \   'ruby': ['rubocop'],
-    \   'tex': ['textlint'],
-    \   'markdown': ['textlint'],
-    \   'css': ['stylelint'],
-    \}
-    let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
-    let g:ale_set_loclist = 0
-    let g:ale_set_quickfix = 1
-    nmap <silent> <C-n> <Plug>(ale_next_wrap)
+  source ~/.config/nvim/plugins/ale.rc.vim
 '''
 [[plugins]]
 repo = 'delphinus/lightline-delphinus'

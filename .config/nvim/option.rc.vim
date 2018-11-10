@@ -19,7 +19,6 @@ set autoindent  "新しい行を開始した時、新しい行と現在の行の
 set tabstop=2    "<Tab>の空白数
 "set smartindent  "インデントをスマートインデント
 set cindent      "スマートインデントよりお利口
-
 set scrolloff=5  " スクロール送りを開始する前後の行数を指定
 set ambiwidth=double "□や◯文字が崩れるのを防ぐ
 set cmdheight=2 "コマンドラインに使われる画面上の行数

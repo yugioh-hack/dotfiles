@@ -10,7 +10,7 @@
 # fi
 
 
-export TERM=xterm-256color
+# export TERM=xterm-256color
 # Customize to your needs...
 export LANG=ja_JP.UTF-8
 # export PYENV_ROOT="${HOME}/.pyenv"
